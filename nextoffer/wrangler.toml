@@ -1,0 +1,39 @@
+# ─────────────────────────────────────────────────────────────────
+# nextoffer/wrangler.toml
+# Cloudflare Pages + Workers configuration
+# ─────────────────────────────────────────────────────────────────
+
+name = "nextoffer"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
+
+# ── KV Namespaces (for caching) ───────────────────────────────────
+# Create with: wrangler kv:namespace create CACHE
+# [[kv_namespaces]]
+# binding = "CACHE"
+# id = "your_kv_namespace_id"
+
+# ── Environment Variables ─────────────────────────────────────────
+# Set secrets via: wrangler pages secret put VARIABLE_NAME
+# These are referenced but values are set via dashboard or CLI
+[vars]
+NEXT_PUBLIC_SITE_URL = "https://nextoffer.co.uk"
+NEXT_PUBLIC_SITE_NAME = "NextOffer UK"
+CF_PAGES = "1"
+
+# ── Production environment ────────────────────────────────────────
+[env.production]
+name = "nextoffer"
+
+[env.production.vars]
+NEXT_PUBLIC_SITE_URL = "https://nextoffer.co.uk"
+NODE_ENV = "production"
+
+# ── Preview / Staging environment ────────────────────────────────
+[env.preview]
+name = "nextoffer-preview"
+
+[env.preview.vars]
+NEXT_PUBLIC_SITE_URL = "https://preview.nextoffer.co.uk"
+NODE_ENV = "production"
